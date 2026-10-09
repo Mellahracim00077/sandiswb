@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>les bons moments ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>tes moments de sourire</h1>
+        <p>chaque moment decris un sourire et chaque sourire est une stabilite </p>
+    </section>
+
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./photo_2026-10-03_02-46-56.jpg" alt="First Date" class="memory-img">
+            <div class="memory-date">ton sourire qui dit tout </div>
+            <div class="memory-caption">la meileurs soeur que j'ai jamais eu, je suis tellement chanceux de t'avoir dans ma vie. Merci d'être toi et de m'aimer
+
+            </div>
+        </div>
+        <div class="memory-card">
+            <img src="./photo_2026-10-03_02-47-04.jpg" alt="Beach Day" class="memory-img">
+            <div class="memory-date">des moments ensemble </div>
+            <div class="memory-caption">je suis tellement reconnaissant pour tous les souvenirs que nous avons créés ensemble. Chaque instant passé avec toi est précieux et rempli de joie. Merci pour tous
+                smiles.😊💕</div>
+        </div>
+        <div class="memory-card">
+            <img src="./photo_2026-10-03_02-47-06.jpg" alt="Movie Night" class="memory-img">
+            <div class="memory-date">un tres jolie esprit </div>
+            <div class="memory-caption">reste toujours comme tu l es t es deja genial🌸💖</div>
+        </div>
+
+    </div>
+
+    <section class="final-message">
+        <h2>merci pour les souvenir et tout ce que tu m a donnée</h2>
+        <p>❤️🎂 **JOYEUX ANNIVERSAIRE À MA SŒUR CHÉRIE !** 🎂❤️
+
+Aujourd’hui est un jour spécial, un jour où le monde célèbre la naissance d’une personne qui occupe une place très importante dans mon cœur : **ma sœur, ma famille, une personne qui mérite tout le bonheur du monde.** 🥹❤️✨
+
+En ce jour si particulier, je veux te souhaiter bien plus qu’un simple joyeux anniversaire. Je te souhaite une vie remplie de bonheur, de santé, d’amour sincère, de réussite et de moments inoubliables. Je te souhaite de toujours garder ce magnifique sourire, de trouver la force dans les moments difficiles et de ne jamais oublier à quel point tu es précieuse pour les personnes qui t’aiment. 💖🌹
+
+La vie nous réserve parfois des épreuves, des moments de doute et des journées où tout semble compliqué, mais j’espère que cette nouvelle année de ta vie t’apportera la paix du cœur, la sérénité et mille raisons de sourire. Que tous tes rêves, même ceux que tu gardes au fond de toi, puissent se réaliser un jour. Tu mérites de connaître les plus belles choses de la vie, de recevoir autant d’amour que tu en donnes et de voir tes efforts récompensés. 🥹🤲❤️
+
+Et aujourd’hui, je pense aussi à ton plus beau cadeau de la vie : **ta petite Mayline.** 👩‍👧💕✨ Tu as la chance d’avoir à tes côtés ce petit être qui apporte une lumière particulière à ta vie, une petite fille qui grandira en découvrant chaque jour la merveilleuse maman qu’elle a. J’espère que vous partagerez encore des milliers de moments de complicité, de fous rires, de câlins et de souvenirs que vous garderez dans vos cœurs pour toujours. Que Dieu vous protège toutes les deux, qu’Il vous accorde une vie remplie de bonheur, qu’Il veille sur Mayline et lui permette de grandir en bonne santé, entourée d’amour, de tendresse et de joie. 🤲❤️🌸
+
+Je te souhaite d’être heureuse non seulement aujourd’hui, mais tous les jours de ta vie. Je te souhaite de voir Mayline grandir, s’épanouir et réaliser ses rêves, et de pouvoir être fière de chaque étape de son chemin. Que votre lien reste toujours aussi fort, que votre maison soit remplie de rires et que l’amour ne quitte jamais votre foyer. Parce qu’au fond, les plus beaux cadeaux ne sont pas ceux que l’on déballe, mais ceux que la vie nous offre et que l’on garde près de son cœur. Et Mayline est sans aucun doute l’un de ces trésors précieux. 🥰👑💗
+
+**Ma sœur, n’oublie jamais que tu mérites d’être heureuse, aimée, respectée et entourée de personnes sincères.** Peu importe les années qui passent, tu resteras toujours ma sœur, et ce lien est quelque chose de précieux que rien ne pourra remplacer. Le temps passe, les vies changent, les responsabilités grandissent, mais les liens familiaux gardent une place unique dans nos cœurs. ❤️🫂
+
+Pour cette nouvelle année, je te souhaite des portes qui s’ouvrent, des problèmes qui se résolvent, des larmes qui se transforment en sourires et des prières qui deviennent réalité. Que chaque nouvelle journée t’apporte une belle surprise et que tu trouves toujours une raison de croire aux belles choses. ✨🌷
+
+**Profite de ta journée, ma sœur, parce qu’aujourd’hui, c’est TON jour !** 🎉🎂🥳 Entoure-toi d’amour, souris autant que possible, profite de chaque instant avec ta petite princesse Mayline et crée des souvenirs magnifiques. Tu mérites d’être célébrée, pas seulement aujourd’hui, mais tout au long de l’année.
+
+Joyeux anniversaire, ma sœur adorée ! ❤️🎂🌹 Que cette nouvelle année soit l’une des plus belles de ta vie, qu’elle t’apporte tout ce que ton cœur désire et qu’elle soit remplie de bénédictions pour toi et Mayline. Que votre avenir soit lumineux, votre bonheur immense et votre amour éternel.
+
+**Je vous souhaite à toutes les deux tout le bonheur du monde. Je vous envoie tout mon amour, mes plus belles pensées et mes meilleurs vœux.** 💖🥹✨
+
+🎂❤️ **JOYEUX ANNIVERSAIRE À TOI, MA SŒUR CHÉRIE ! QUE DIEU TE GARDE, TE PROTÈGE ET TE COMBLE DE BONHEUR, AUJOURD’HUI ET POUR TOUJOURS !** ❤️🤲🌸👑
+ 🎂💕</p>    
+        <a href="#" class="goodbye-btn">pour toujours  💝</a>
+    </section>
+</body>
+
+</html>
